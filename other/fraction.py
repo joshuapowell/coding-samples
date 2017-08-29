@@ -123,8 +123,22 @@ class Fraction:
 
         return Fraction(_reducedNumerator, _reducedDenominator)
 
+    def __eq__(self, toBeCompared):
+        """Override built-in __eq__ implementation.
+
+        Overrides the default deep equality so that we can compare non-integer
+        values, in this case comparing Fraction deep equality.
+        """
+        _first_comparison = self.num * toBeCompared.den
+        _second_comparison = toBeCompared.num * self.den
+
+        return _first_comparison == _second_comparison
+
     def reduce(self, _m, _n):
         """Reduce fractions by the greatest common divisor (GCD).
+
+        Greatest Common Divisor (GCD) is the largest number that divides both
+        of them without leaving a remainder
 
         Euclid's Algorithm states that the greatest common divisor of two
         integers _m and _n is _n if _n divides _m evenly. However, if _n
@@ -133,6 +147,9 @@ class Fraction:
 
         :param (object) self
             An object referencing Fraction.
+
+        :return (int) _n
+            The greatest common divisor
 
         :see https://en.wikipedia.org/wiki/Euclidean_algorithm
         """
@@ -148,13 +165,19 @@ class Fraction:
 
 
 """Example usage of the Fraction class."""
+print "Basic Fractional Notation----------------------------------------------"
 _fraction = Fraction(3, 5)
 
 print _fraction
 
 """Attempt addition of two fractions."""
+print "Addition in Fractional Notation----------------------------------------"
 _f1 = Fraction(1, 4)
 _f2 = Fraction(1, 2)
 _f3 = _f1+_f2
 
 print _f3
+
+"""Attempt to compare deep equality of two fractions."""
+print "Deep Equality of Two Fractional Notations------------------------------"
+print _f1 == _f2
