@@ -21,7 +21,7 @@ class UnaryGate(LogicGate):
             A generic string that represents the LogicGate
 
         """
-        LogicGate.__init__(self, label)
+        super(LogicGate, self).__init__(label)
 
         self.pinA = None
 
