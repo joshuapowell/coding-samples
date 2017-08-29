@@ -58,19 +58,8 @@ class LogicGate:
 
         return self.output
 
-    def perform(self):
-        """Execute the LogicGate.
-
-        :param (object) self
-            An object representing LogicGate.
-
-        :return pass
-        """
-        pass
-
 
 """Example Usage."""
 _gate = LogicGate("verify")
 
 print "%s" % _gate.getLabel()
-print "%s" % _gate.getOutput()
