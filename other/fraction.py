@@ -38,7 +38,7 @@ class Fraction:
             An in-depth description of the reason and abstraction behind
             changing the divion operator can be found in PEP238.
 
-            @see https://www.python.org/dev/peps/pep-0238/
+            :see https://www.python.org/dev/peps/pep-0238/
 
         Method 2:
 
@@ -116,7 +116,35 @@ class Fraction:
         _numerator = (self.num*toBeAdded.den)+(toBeAdded.num*self.den)
         _denominator = (self.den*toBeAdded.den)
 
-        return Fraction(_numerator, _denominator)
+        _reduce = self.reduce(_numerator, _denominator)
+
+        _reducedNumerator = _numerator/_reduce
+        _reducedDenominator = _denominator/_reduce
+
+        return Fraction(_reducedNumerator, _reducedDenominator)
+
+    def reduce(self, _m, _n):
+        """Reduce fractions by the greatest common divisor (GCD).
+
+        Euclid's Algorithm states that the greatest common divisor of two
+        integers _m and _n is _n if _n divides _m evenly. However, if _n
+        does not divide _m evenly, then the answer is the greatest common
+        divisor of _n and the remainder of _m divided by _n.
+
+        :param (object) self
+            An object referencing Fraction.
+
+        :see https://en.wikipedia.org/wiki/Euclidean_algorithm
+        """
+
+        while _m%_n != 0:
+            _tmpM = _m
+            _tmpN = _n
+
+            _m = _tmpN
+            _n = _tmpM%_tmpN
+
+        return _n
 
 
 """Example usage of the Fraction class."""
