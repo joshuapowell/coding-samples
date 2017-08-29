@@ -33,9 +33,7 @@ class Fraction:
 
         Method 1:
 
-            ```
-            from __future__ import division
-            ```
+            >>> from __future__ import division
 
             An in-depth description of the reason and abstraction behind
             changing the divion operator can be found in PEP238.
@@ -47,20 +45,15 @@ class Fraction:
             Represent either the numerator or denominator as a float as shown
             below in the examples.
 
-            ```
-            3/5.0
-            ```
+            >>> 3/5.0
 
             or
 
-            ```
-            3/float(5.0)
-            ```
+            >>> 3/float(5.0)
 
             or
 
-            ```
-            float(3)/5
+            >>> float(3)/5
 
     """
 
@@ -79,9 +72,61 @@ class Fraction:
         self.den = float(denominator)
 
     def __str__(self):
-        return "%s/%s" % (self.num, self.den)
+        """Override built-in __str__ implementation.
+
+        Overrides default of printing instance address. Provides the end-user
+        with a mock representation of the Fraction in fractional notation.
+
+        :param (object) self
+            An object referencing Fraction.
+
+        :return (str)
+            A visual representation of the numerator and denominator displayed
+            in mock fractional notation.
+        """
+
+        return "%s/%s" % (int(self.num), int(self.den))
+
+    def __add__(self, toBeAdded):
+        """Override built-in __add__ implementation.
+
+        Overrides default addition due to built-ins inablility to add these
+        fractional notations.
+
+        Mathematical notation:
+
+            a   c     ad   cb     ad+cb
+            - + -  =  -- + --  =  -----
+            b   d     bd   bd      bd
+
+            1   1     ad   cb     ad+cb
+            - + -  =  -- + --  =  -----
+            4   2     bd   bd      bd
+
+        Example:
+
+            >>> _f1 = Fraction(1, 4)
+            >>> _f2 = Fraction(1, 2)
+            >>> _f3 = _f1+_f2
+            6/8
+            >>>
+
+        """
+
+        _numerator = (self.num*toBeAdded.den)+(toBeAdded.num*self.den)
+        _denominator = (self.den*toBeAdded.den)
+
+        return Fraction(_numerator, _denominator)
 
 
+"""Example usage of the Fraction class."""
 _fraction = Fraction(3, 5)
 
-print "%s/%s or %s" % (_fraction.num,_fraction.den,(_fraction.num/_fraction.den))
+print _fraction
+
+"""Attempt addition of two fractions."""
+_f1 = Fraction(1, 4)
+_f2 = Fraction(1, 2)
+_f3 = _f1+_f2
+
+print _f3
