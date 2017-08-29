@@ -6,6 +6,15 @@ class LogicGate:
 
     Create logic gates with this easy abstraction.
 
+    Example:
+
+        >>> _gate = LogicGate("verify")
+        >>> _gate.getLabel()
+        verify
+        >>> _gate.getOutput()
+        None
+        >>>
+
     """
 
     def __init__(self, label):
@@ -58,3 +67,10 @@ class LogicGate:
         :return pass
         """
         pass
+
+
+"""Example Usage."""
+_gate = LogicGate("verify")
+
+print "%s" % _gate.getLabel()
+print "%s" % _gate.getOutput()
