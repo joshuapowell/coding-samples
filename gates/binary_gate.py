@@ -21,7 +21,7 @@ class BinaryGate(LogicGate):
             A generic string that represents the LogicGate
 
         """
-        super(LogicGate, self).__init__(label)
+        LogicGate.__init__(self, label)
 
         self.pinA = None
         self.pinB = None
@@ -31,10 +31,3 @@ class BinaryGate(LogicGate):
 
     def getPinB(self):
         return int(input("Enter Pin B input for gate %s: " % (self.getLabel())))
-
-
-"""Example Usage."""
-_gate = BinaryGate("verify")
-
-_pinA = _gate.getPinA()
-_pinB = _gate.getPinB()
